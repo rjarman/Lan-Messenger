@@ -1,0 +1,10 @@
+<ion-content fullscreen>
+  <ion-item *ngFor="let message of messages" routerLink="/chat/{{message.userId}}">
+    <ion-avatar>
+      <img src="{{message.profilePhoto}}" alt="{{message.name}}">
+    </ion-avatar>
+      <ion-label>
+        <p>{{message.name}}</p>
+      </ion-label>
+  </ion-item>
+</ion-content>
