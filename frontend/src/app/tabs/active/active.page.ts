@@ -1,34 +1,22 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { OnlineUser } from 'src/app/shared/onlineUser';
-import { HttpClient } from '@angular/common/http';
-import { environment } from 'src/environments/environment';
+import { Component, OnInit } from '@angular/core';
+import { Profile } from 'src/app/shared/types';
+import { ServerService } from 'src/app/server.service';
 
 @Component({
   selector: 'app-active',
   templateUrl: './active.page.html',
   styleUrls: ['./active.page.scss'],
 })
-export class ActivePage implements OnInit, OnDestroy {
-  onlineUser: OnlineUser[];
-  private intervalEnd;
+export class ActivePage implements OnInit {
+  onlineUser: Profile[];
+  userData: string;
 
-  constructor(private httpClient: HttpClient) {}
+  constructor(private serverService: ServerService) {}
 
   ngOnInit() {
-    this.intervalEnd = setInterval(() => {
-      this.httpClient
-        .post<{ status }>(
-          environment.URL,
-          { reqType: 'onlineUser' },
-          { observe: 'response' }
-        )
-        .subscribe((response) => {
-          this.onlineUser = response.body.status;
-        });
-    }, 5000);
-  }
-
-  ngOnDestroy() {
-    clearInterval(this.intervalEnd);
+    this.serverService.getUserDataInterval.subscribe((response) => {
+      this.onlineUser = response.body.status;
+      this.userData = JSON.stringify(this.onlineUser);
+    });
   }
 }

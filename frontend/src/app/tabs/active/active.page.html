@@ -1,5 +1,5 @@
 <ion-content fullscreen>
-  <ion-item *ngFor="let user of onlineUser" routerLink="/chat/{{user.email}}">
+  <ion-item *ngFor="let user of onlineUser" routerLink="/chat/{{userData}}">
     <ion-avatar>
       <img src="../../../assets/profile/user.svg" alt="{{user.email}}" />
     </ion-avatar>
@@ -7,7 +7,7 @@
       <ion-grid>
         <ion-row>
           <ion-col size="11">
-            <p style="display: inline-block">{{user.userName}}</p>
+            <p style="display: inline-block">{{user.name}}</p>
           </ion-col>
           <ion-col size="1">
             <span class="dot"></span>
