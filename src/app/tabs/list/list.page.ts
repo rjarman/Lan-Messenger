@@ -9,7 +9,7 @@ import { Message } from 'src/app/shared/message';
 })
 export class ListPage implements OnInit {
 
-  private messages: Message[];
+  public messages: Message[];
 
   constructor(private messageService: MessagesService) { }
 

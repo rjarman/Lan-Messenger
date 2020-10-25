@@ -1,9 +1,96 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>auth</ion-title>
-  </ion-toolbar>
-</ion-header>
 
-<ion-content>
 
+<ion-content style="overflow-y: hidden;">
+  <ion-card style="margin-top: 50%;margin-bottom: 50%;">
+    <ion-card-content *ngIf = "isRegistered; else notRegistered">
+      <ion-grid>
+        <ion-row>
+          <ion-col size="12">
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">Email</ion-label>
+                  <ion-input [(ngModel)]="emailLogin"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-item>
+                  <ion-label position="floating">Password</ion-label>
+                  <ion-input [(ngModel)]="passwordLogin"></ion-input>
+                </ion-item>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <ion-toolbar>
+                  <ion-buttons slot="primary">
+                    <ion-button (keyup.enter) = "setLogin()" fill="solid" color="primary" (click)="setLogin()">
+                      Login
+                    </ion-button>
+                  </ion-buttons>
+                </ion-toolbar>
+              </ion-col>
+            </ion-row>
+            <ion-row style="width: 100%;text-align: center;">
+              <ion-col size="12">
+                <p style="font-size: large;" (click)="toRegister()"><u>Go to registration!</u></p>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+    <ng-template #notRegistered>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="12">
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">User Name</ion-label>
+                    <ion-input [(ngModel)] = "userNameRegister"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input [(ngModel)] = "emailRegister"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input [(ngModel)] = "passwordRegister"></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-toolbar>
+                    <ion-buttons slot="primary">
+                      <ion-button (keyup.enter) = "setRegister()" fill="solid" color="primary" (click)="setRegister()">
+                        Register
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-col>
+              </ion-row>
+              <ion-row style="width: 100%;text-align: center;">
+                <ion-col size="12">
+                  <p style="font-size: large;" (click)="toLogin()"><u>Go to login!</u></p>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ng-template>
+  </ion-card>
 </ion-content>

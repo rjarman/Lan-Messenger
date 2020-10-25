@@ -1,10 +1,20 @@
 <ion-content fullscreen>
-  <ion-item *ngFor="let message of messages" routerLink="/chat/{{message.userId}}">
+  <!-- <ion-item *ngFor="let message of messages" routerLink="/chat/{{message.userId}}"> -->
+  <ion-item *ngFor="let user of onlineUser">
     <ion-avatar>
-      <img src="{{message.profilePhoto}}" alt="{{message.name}}">
+      <img src="../../../assets/profile/rahul.jpg" alt="{{user.email}}">
     </ion-avatar>
       <ion-label>
-        <p>{{message.name}}</p>
+        <ion-grid>
+          <ion-row>
+            <ion-col size="11">
+              <p style="display: inline-block;">{{user.userName}}</p>
+            </ion-col>
+            <ion-col size="1">
+              <span class="dot"></span>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
       </ion-label>
   </ion-item>
 </ion-content>
