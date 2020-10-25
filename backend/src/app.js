@@ -1,52 +1,49 @@
-const express = require('express');
 const bodyParser = require('body-parser');
-
-const cors = require('cors');
-const _localStorage = require('../models/localStorage');
-
-const app = express();
+const app = require('express')();
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({extended: true}));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(cors({
+app.use(
+  require('cors')({
     origin: 'http://localhost:4200',
-    credentials: true
-}));
+    credentials: true,
+  })
+);
 
-app.post('/login', (req, res, next) => {
-    // res.send('<h1>Hello From Server!</h1>');
-    console.log(req.body);
-    if(_localStorage.loginData(req.body)) {
-        res.status(201).json({
-            status: 'ok'
-        });
-    } else {
-        res.status(201).json({
-            status: 'not found'
-        });
-    }
+const route = {
+  login: {
+    code: 200,
+    method: (data) => {
+      return require('./routes').login(data);
+    },
+  },
+  register: {
+    code: 201,
+    method: (data) => {
+      return require('./routes').register(data);
+    },
+  },
+  onlineUser: {
+    code: 200,
+    method: () => {
+      return require('./routes').onlineUser();
+    },
+  },
+};
+
+app.post('/', (req, res, next) => {
+    console.log(req.body)
+  res.status(route[req.body.reqType].code).json({
+    status: route[req.body.reqType].method(req.body.data),
+  });
 });
 
-app.post('/register', (req, res, next) => {
-    // res.send('<h1>Hello From Server!</h1>');
-    console.log(req.body);
-    if(_localStorage.registerData(req.body)) {
-        res.status(201).json({
-            status: 'ok'
-        });
-    } else {
-        res.status(201).json({
-            status: 'failed'
-        });
-    }
-});
-
-app.post('/getOnlineUser', (req, res, next) => {
-    data = _localStorage.getOnlineUser();
-    res.status(200).json({
-        data: data
-    });
-});
+// app.post('/getOnlineUser', (req, res, next) => {
+//     data = _localStorage.getOnlineUser();
+//     res.status(200).json({
+//         data: data
+//     });
+// });
 
 module.exports = app;
