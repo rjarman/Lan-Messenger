@@ -2,8 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { MessagesService } from '../services/messages.service';
 import { Message } from '../shared/message';
 import { ActivatedRoute } from '@angular/router';
-import { ModalController } from '@ionic/angular';
-import { InfoPage } from './info/info.page';
 
 @Component({
   selector: 'app-chat',
@@ -18,8 +16,7 @@ export class ChatPage implements OnInit {
 
   constructor(
     private messsageService: MessagesService,
-    private activatedRoute: ActivatedRoute,
-    private modalController: ModalController
+    private activatedRoute: ActivatedRoute
     ) { }
 
   ngOnInit() {
@@ -29,12 +26,4 @@ export class ChatPage implements OnInit {
     this.messages = this.messsageService.getMessages();
     this.userDetails = this.messsageService.getUserDetails(this.userId);
   }
-
-  async openInfo(){
-    const modal = await this.modalController.create({
-      component: InfoPage
-    });
-    return await modal.present();
-  }
-
 }

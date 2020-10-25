@@ -1,41 +1,56 @@
-
-
-<ion-content style="overflow-y: hidden;">
-  <ion-card style="margin-top: 50%;margin-bottom: 50%;">
-    <ion-card-content *ngIf = "isRegistered; else notRegistered">
+<ion-content style="overflow-y: hidden">
+  <ion-card style="margin-top: 50%; margin-bottom: 50%">
+    <ion-card-content *ngIf="isRegistered; else notRegistered">
       <ion-grid>
         <ion-row>
           <ion-col size="12">
-            <ion-row>
+            <form [formGroup]="loginForm" (ngSubmit)="login()">
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Email</ion-label>
+                    <ion-input
+                      type="email"
+                      formControlName="email"
+                      required
+                    ></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-item>
+                    <ion-label position="floating">Password</ion-label>
+                    <ion-input
+                      type="password"
+                      formControlName="password"
+                      required
+                    ></ion-input>
+                  </ion-item>
+                </ion-col>
+              </ion-row>
+              <ion-row>
+                <ion-col size="12">
+                  <ion-toolbar>
+                    <ion-buttons slot="primary">
+                      <ion-button
+                        fill="solid"
+                        color="primary"
+                        type="submit"
+                        [disabled]="!loginForm.valid"
+                      >
+                        Login
+                      </ion-button>
+                    </ion-buttons>
+                  </ion-toolbar>
+                </ion-col>
+              </ion-row>
+            </form>
+            <ion-row style="width: 100%; text-align: center">
               <ion-col size="12">
-                <ion-item>
-                  <ion-label position="floating">Email</ion-label>
-                  <ion-input [(ngModel)]="emailLogin"></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <ion-item>
-                  <ion-label position="floating">Password</ion-label>
-                  <ion-input [(ngModel)]="passwordLogin"></ion-input>
-                </ion-item>
-              </ion-col>
-            </ion-row>
-            <ion-row>
-              <ion-col size="12">
-                <ion-toolbar>
-                  <ion-buttons slot="primary">
-                    <ion-button (keyup.enter) = "setLogin()" fill="solid" color="primary" (click)="setLogin()">
-                      Login
-                    </ion-button>
-                  </ion-buttons>
-                </ion-toolbar>
-              </ion-col>
-            </ion-row>
-            <ion-row style="width: 100%;text-align: center;">
-              <ion-col size="12">
-                <p style="font-size: large;" (click)="toRegister()"><u>Go to registration!</u></p>
+                <p style="font-size: large" (click)="toRegister()">
+                  <u>Go to registration!</u>
+                </p>
               </ion-col>
             </ion-row>
           </ion-col>
@@ -47,44 +62,65 @@
         <ion-grid>
           <ion-row>
             <ion-col size="12">
-              <ion-row>
+              <form [formGroup]="registerForm" (ngSubmit)="register()">
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">User Name</ion-label>
+                      <ion-input
+                        type="text"
+                        formControlName="userName"
+                        required
+                      ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Email</ion-label>
+                      <ion-input
+                        type="email"
+                        formControlName="email"
+                        required
+                      ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-item>
+                      <ion-label position="floating">Password</ion-label>
+                      <ion-input
+                        type="password"
+                        formControlName="password"
+                        required
+                      ></ion-input>
+                    </ion-item>
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+                  <ion-col size="12">
+                    <ion-toolbar>
+                      <ion-buttons slot="primary">
+                        <ion-button
+                          fill="solid"
+                          color="primary"
+                          [disabled]="!registerForm.valid"
+                          type="submit"
+                        >
+                          Register
+                        </ion-button>
+                      </ion-buttons>
+                    </ion-toolbar>
+                  </ion-col>
+                </ion-row>
+              </form>
+              <ion-row style="width: 100%; text-align: center">
                 <ion-col size="12">
-                  <ion-item>
-                    <ion-label position="floating">User Name</ion-label>
-                    <ion-input [(ngModel)] = "userNameRegister"></ion-input>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-item>
-                    <ion-label position="floating">Email</ion-label>
-                    <ion-input [(ngModel)] = "emailRegister"></ion-input>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-item>
-                    <ion-label position="floating">Password</ion-label>
-                    <ion-input [(ngModel)] = "passwordRegister"></ion-input>
-                  </ion-item>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <ion-toolbar>
-                    <ion-buttons slot="primary">
-                      <ion-button (keyup.enter) = "setRegister()" fill="solid" color="primary" (click)="setRegister()">
-                        Register
-                      </ion-button>
-                    </ion-buttons>
-                  </ion-toolbar>
-                </ion-col>
-              </ion-row>
-              <ion-row style="width: 100%;text-align: center;">
-                <ion-col size="12">
-                  <p style="font-size: large;" (click)="toLogin()"><u>Go to login!</u></p>
+                  <p style="font-size: large" (click)="toLogin()">
+                    <u>Go to login!</u>
+                  </p>
                 </ion-col>
               </ion-row>
             </ion-col>

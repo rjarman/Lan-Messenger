@@ -24,7 +24,7 @@
     "@ionic-native/status-bar": "^5.0.0",
     "@ionic/angular": "^4.7.1",
     "core-js": "^2.5.4",
-    "ngx-cookie-service": "^2.4.0",
+    "ngx-cookie-service": "^10.1.1",
     "rxjs": "~6.5.1",
     "socket.io-client": "^2.3.0",
     "tslib": "^1.9.0",

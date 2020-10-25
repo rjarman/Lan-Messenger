@@ -4,9 +4,7 @@
 
 export const environment = {
   production: false,
-  SOCKET_ENDPOINT: 'http://localhost:3000',
-  LOGIN_URL: 'http://localhost:3000/login',
-  REGISTER_URL: 'http://localhost:3000/register',
+  URL: 'http://localhost:3000/',
   ONLINE_USER_URL: 'http://localhost:3000/getOnlineUser'
 };
 

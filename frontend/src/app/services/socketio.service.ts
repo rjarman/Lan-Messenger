@@ -10,7 +10,7 @@ export class SocketioService {
   public socket: any;
 
   constructor() {
-    this.socket = io(environment.SOCKET_ENDPOINT);
+    this.socket = io(environment.URL);
    }
 
    public emit(name: string, value: string) {

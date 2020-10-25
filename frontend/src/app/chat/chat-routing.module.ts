@@ -6,12 +6,8 @@ import { ChatPage } from './chat.page';
 const routes: Routes = [
   {
     path: '',
-    component: ChatPage
+    component: ChatPage,
   },
-  {
-    path: 'info',
-    loadChildren: () => import('./info/info.module').then( m => m.InfoPageModule)
-  }
 ];
 
 @NgModule({

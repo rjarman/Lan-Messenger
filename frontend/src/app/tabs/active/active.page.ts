@@ -11,26 +11,29 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./active.page.scss'],
 })
 export class ActivePage implements OnInit, OnDestroy {
-
   public messages: Message[];
   public onlineUser: OnlineUser[];
   private intervalEnd;
 
-  constructor(private httpClient: HttpClient) {
-   }
+  constructor(private httpClient: HttpClient) {}
 
   ngOnInit() {
     // this.messages = this.messageSerivice.getMessages();
     this.intervalEnd = setInterval(() => {
-      this.httpClient.post(environment.ONLINE_USER_URL, {observe: 'response'}).subscribe(response => {
-        this.onlineUser = response['data'];
-        // console.log(this.onlineUser);
-      });
+      this.httpClient
+        .post(
+          environment.ONLINE_USER_URL,
+          { reqType: 'onlineUser' },
+          { observe: 'response' }
+        )
+        .subscribe((response) => {
+          // this.onlineUser = response['data'];
+          console.log(this.onlineUser);
+        });
     }, 2000);
   }
 
   ngOnDestroy() {
     clearInterval(this.intervalEnd);
   }
-
 }

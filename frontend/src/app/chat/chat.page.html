@@ -11,7 +11,6 @@
         <h2>{{userDetails.name}}</h2>
       </ion-label>
     </ion-item>
-    <ion-icon (click)="openInfo()" name="information-circle" slot="end"></ion-icon>
   </ion-toolbar>
 </ion-header>
 
@@ -24,7 +23,7 @@
     </div>
   </div>
 
-  <div class="chat-controls" [ngClass]="{'active': showOptions}">
+  <div class="chat-controls">
     <ion-row class="bg-white">
       <ion-col size="11" class="ion-no-padding">
         <ion-list lines="none" class="ion-no-padding">

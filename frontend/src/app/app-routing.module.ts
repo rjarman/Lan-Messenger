@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from './auth/AuthGuard';
 
 const routes: Routes = [
   {
@@ -8,20 +9,13 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: 'settings',
-    loadChildren: () => import('./settings/settings.module').then( m => m.SettingsPageModule)
-  },
-  {
-    path: 'splash',
-    loadChildren: () => import('./splash/splash.module').then( m => m.SplashPageModule)
-  },
-  {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule)
+    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule),
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule)
+    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
+    canLoad: [AuthGuard]
   },
   {
     path: 'chat',
@@ -34,7 +28,8 @@ const routes: Routes = [
         path: ':userId',
         loadChildren: './chat/chat.module#ChatPageModule'
       }
-    ]
+    ],
+    canLoad: [AuthGuard]
   }
 ];
 
