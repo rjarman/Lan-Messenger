@@ -33,7 +33,6 @@ const route = {
 };
 
 app.post('/', (req, res, next) => {
-    console.log(req.body)
   res.status(route[req.body.reqType].code).json({
     status: route[req.body.reqType].method(req.body.data),
   });

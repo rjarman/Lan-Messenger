@@ -21,16 +21,15 @@ export class ActivePage implements OnInit, OnDestroy {
     // this.messages = this.messageSerivice.getMessages();
     this.intervalEnd = setInterval(() => {
       this.httpClient
-        .post(
-          environment.ONLINE_USER_URL,
+        .post<{ status }>(
+          environment.URL,
           { reqType: 'onlineUser' },
           { observe: 'response' }
         )
         .subscribe((response) => {
-          // this.onlineUser = response['data'];
-          console.log(this.onlineUser);
+          this.onlineUser = response.body.status;
         });
-    }, 2000);
+    }, 5000);
   }
 
   ngOnDestroy() {
