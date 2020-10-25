@@ -7,16 +7,11 @@ import { IonicModule } from '@ionic/angular';
 import { ActivePageRoutingModule } from './active-routing.module';
 
 import { ActivePage } from './active.page';
-import { MessagesService } from '../../services/messages.service';
+import { ChatService } from '../../chat/chat.service';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    ActivePageRoutingModule
-  ],
+  imports: [CommonModule, FormsModule, IonicModule, ActivePageRoutingModule],
   declarations: [ActivePage],
-  providers: [MessagesService]
+  providers: [ChatService],
 })
 export class ActivePageModule {}

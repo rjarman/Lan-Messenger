@@ -6,8 +6,8 @@ import { ActivePage } from './active.page';
 const routes: Routes = [
   {
     path: '',
-    component: ActivePage
-  }
+    component: ActivePage,
+  },
 ];
 
 @NgModule({
