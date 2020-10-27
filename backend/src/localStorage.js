@@ -5,7 +5,7 @@ const __from = (data) => {
     const temp_data = JSON.parse(localStorage.getItem(data.email));
     temp_data.messages.push(data.message);
     localStorage.setItem(data.email, JSON.stringify(temp_data));
-    return __to(temp_data.name, data)
+    return __to(temp_data.name, data);
   }
 };
 

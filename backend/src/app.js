@@ -36,18 +36,6 @@ const route = {
       return require('./routes').userData(data);
     },
   },
-  onlineUser: {
-    code: 200,
-    method: (data) => {
-      return require('./routes').onlineUser(data);
-    },
-  },
-  addMessage: {
-    code: 201,
-    method: (data) => {
-      return require('./routes').addMessage(data);
-    },
-  },
 };
 
 app.post('/', (req, res, next) => {
@@ -55,16 +43,5 @@ app.post('/', (req, res, next) => {
     data: route[req.body.reqType].method(req.body.data),
   });
 });
-
-app.post('/', (req, res, next) => {
-  console.log(res.method);
-});
-
-// app.post('/getOnlineUser', (req, res, next) => {
-//     data = _localStorage.getOnlineUser();
-//     res.status(200).json({
-//         data: data
-//     });
-// });
 
 module.exports = app;
