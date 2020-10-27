@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   URL: 'http://localhost:3000/',
-  ONLINE_USER_URL: 'http://localhost:3000/getOnlineUser'
+  SOCKET: 'ws://127.0.0.1:3000/',
 };
 
 /*

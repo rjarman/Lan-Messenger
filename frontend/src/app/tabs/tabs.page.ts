@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SocketioService } from '../services/socketio.service';
+import { SocketService } from '../socket.service';
 import { CookieService } from 'ngx-cookie-service';
 import { Router } from '@angular/router';
 
@@ -10,22 +10,27 @@ import { Router } from '@angular/router';
 })
 export class TabsPage {
   constructor(
-    private socketioService: SocketioService,
+    private socketService: SocketService,
     private cookieService: CookieService,
     private route: Router
   ) {
-    this.socketioService.socket.emit(
-      'connected person',
-      this.cookieService.get('email')
-    );
+    this.socketService.send({
+      type: 'connected_person',
+      data: {
+        email: this.cookieService.get('email'),
+        name: this.cookieService.get('name'),
+      },
+    });
   }
 
   logout() {
-    this.socketioService.socket.emit(
-      'disconnected person',
-      this.cookieService.get('email')
-    );
-    this.cookieService.deleteAll();
+    this.socketService.disconnect({
+      type: 'disconnected_person',
+      data: {
+        email: this.cookieService.get('email'),
+        name: this.cookieService.get('name'),
+      },
+    });
     this.cookieService.deleteAll('/', 'localhost');
     this.route.navigate(['/auth']);
   }
