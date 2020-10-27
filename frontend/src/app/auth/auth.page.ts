@@ -19,6 +19,7 @@ export class AuthPage {
   });
 
   isRegistered: boolean;
+
   constructor(
     private authService: AuthService,
     private formBuilder: FormBuilder

@@ -1,11 +1,11 @@
 @mixin outlineRemover {
-    outline: 0;
-    border: none;
+  outline: 0;
+  border: none;
 }
 
 .remove-outline {
-    @include outlineRemover();
-    ion-icon {
-        font-size: 28px;
-    }
+  @include outlineRemover();
+  ion-icon {
+    font-size: 28px;
+  }
 }

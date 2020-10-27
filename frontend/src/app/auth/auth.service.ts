@@ -29,7 +29,13 @@ export class AuthService {
         if (data.status === 'ok') {
           this.clearData.next(true);
           this.cookieService.deleteAll('/', 'localhost');
-          this.cookieService.set('_isUserLogin', 'true', 30000, '/', 'localhost');
+          this.cookieService.set(
+            '_isUserLogin',
+            'true',
+            30000,
+            '/',
+            'localhost'
+          );
           this.cookieService.set('email', data.email, 30000, '/', 'localhost');
           this.cookieService.set('name', data.name, 30000, '/', 'localhost');
           this.route.navigate(['/tabs']);
@@ -48,7 +54,13 @@ export class AuthService {
         if (data.status === 'ok') {
           this.clearData.next(true);
           this.cookieService.deleteAll('/', 'localhost');
-          this.cookieService.set('_isUserLogin', 'true', 30000, '/', 'localhost');
+          this.cookieService.set(
+            '_isUserLogin',
+            'true',
+            30000,
+            '/',
+            'localhost'
+          );
           this.cookieService.set('email', data.email, 30000, '/', 'localhost');
           this.cookieService.set('name', data.name, 30000, '/', 'localhost');
           this.route.navigate(['/tabs']);
