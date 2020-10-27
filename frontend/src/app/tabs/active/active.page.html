@@ -1,5 +1,9 @@
-<ion-content fullscreen>
-  <ion-item *ngFor="let user of onlineUser" routerLink="/chat/{{userData}}">
+<ion-content id="abc" fullscreen>
+  <ion-item
+    *ngFor="let user of onlineUser"
+    id="{{user.email}}"
+    [routerLink]="['/chat/', user.email, user.name]"
+  >
     <ion-avatar>
       <img src="../../../assets/profile/user.svg" alt="{{user.email}}" />
     </ion-avatar>

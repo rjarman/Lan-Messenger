@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Profile } from 'src/app/shared/types';
-import { ServerService } from 'src/app/server.service';
+import { ActiveUser } from 'src/app/shared/types';
+import { SocketService } from 'src/app/socket.service';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-active',
@@ -8,15 +9,30 @@ import { ServerService } from 'src/app/server.service';
   styleUrls: ['./active.page.scss'],
 })
 export class ActivePage implements OnInit {
-  onlineUser: Profile[];
-  userData: string;
+  onlineUser: ActiveUser[];
 
-  constructor(private serverService: ServerService) {}
+  constructor(
+    private socketService: SocketService,
+    private cookieService: CookieService
+  ) {}
 
   ngOnInit() {
-    this.serverService.getUserDataInterval.subscribe((response) => {
-      this.onlineUser = response.body.status;
-      this.userData = JSON.stringify(this.onlineUser);
+    this.socketService.onlineEmitter.subscribe((list) => {
+      this.onlineUser = list;
+      this.removeSelf();
     });
+  }
+
+  private removeSelf() {
+    let index = -1;
+    // tslint:disable-next-line: prefer-for-of
+    for (let i = 0; i < this.onlineUser.length; i++) {
+      if (this.onlineUser[i].email === this.cookieService.get('email')) {
+        index = i;
+      }
+    }
+    if (index > -1) {
+      this.onlineUser.splice(index, 1);
+    }
   }
 }
