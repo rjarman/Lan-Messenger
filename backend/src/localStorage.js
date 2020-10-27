@@ -1,55 +1,36 @@
-// import { LocalStorage } from "node-localstorage";
-
 const localStorage = new require('node-localstorage').LocalStorage('./data');
-// localStorage = new LocalStorage('./scratch');
 
-let onlineUserData = [];
+const __from = (data) => {
+  if (localStorage.getItem(data.email)) {
+    const temp_data = JSON.parse(localStorage.getItem(data.email));
+    temp_data.messages.push(data.message);
+    localStorage.setItem(data.email, JSON.stringify(temp_data));
+    return __to(temp_data.name, data)
+  }
+};
 
-var storageData = {
-    registerData: (data) => {
-        return registerData(data);
-    },
-    loginData: (data) => {
-        return loginData(data);
-    },
-    setOnlineUser: (data) => {
-        setOnlineUser(data);
-    },
-    getOnlineUser: () => {
-        return getOnlineUser();
-    },
-    removeOnline: (data) => {
-        removeOnline(data);
-    }
-}
+const __to = (name, data) => {
+  if (localStorage.getItem(data.message.email)) {
+    const temp_data = JSON.parse(localStorage.getItem(data.message.email));
+    data.message = {
+      type: 'reply',
+      email: data.email,
+      name: name,
+      message: data.message.message,
+      date: data.message.date,
+      time: data.message.time,
+    };
+    temp_data.messages.push(data.message);
+    localStorage.setItem(temp_data.email, JSON.stringify(temp_data));
+    return {
+      email: temp_data.email,
+      message: data.message,
+    };
+  }
+};
 
-function registerData(data) {
-    localStorage.setItem(data.email, JSON.stringify(data));
-    console.log(localStorage.getItem("armanrafsunjany@gmail.com"));
-    return true;
-}
-function loginData(data) {
-    let _password = JSON.parse(localStorage.getItem(data.email));
-    if (data.password === _password.password) {
-        return true;
-    }
-}
+const addMessage = (data) => {
+  return __from(data);
+};
 
-function setOnlineUser(data) {
-    if (data === JSON.parse(localStorage.getItem(data)).email) {
-        onlineUserData.push({email: data, userName: JSON.parse(localStorage.getItem(data)).userName});
-        jsonObject = onlineUserData.map(JSON.stringify);
-        uniqueSet = new Set(jsonObject);
-        onlineUserData = Array.from(uniqueSet).map(JSON.parse);
-    }
-}
-
-function getOnlineUser() {
-    return onlineUserData;
-}
-
-function removeOnline(data){
-    console.log(data);
-    onlineUserData.pop({email: data, userName: JSON.parse(localStorage.getItem(data)).userName});
-}
-module.exports = storageData;
+module.exports = { addMessage };
