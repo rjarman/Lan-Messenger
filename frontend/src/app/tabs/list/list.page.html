@@ -1,13 +1,16 @@
 <ion-content fullscreen>
-
-  <ion-item *ngFor="let message of messages" routerLink="/chat/{{message.userId}}" >
-    <ion-avatar>
-      <img src="{{message.profilePhoto}}" alt="{{message.name}}">
-    </ion-avatar>
-    <ion-label>
-      <h2>{{message.name}}</h2>
-      <p>{{message.message.slice(0,30)}}</p>
-    </ion-label>
-  </ion-item>
-
+  <div *ngIf="!isEmpty">
+    <ion-item
+      *ngFor="let user of userList"
+      [routerLink]="['/chat/', user.email, user.name]"
+    >
+      <ion-avatar>
+        <img src="../../../assets/profile/user.svg" alt="profile_avatar" />
+      </ion-avatar>
+      <ion-label>
+        <h2>{{user.name}}</h2>
+        <p>{{user.message}}</p>
+      </ion-label>
+    </ion-item>
+  </div>
 </ion-content>
