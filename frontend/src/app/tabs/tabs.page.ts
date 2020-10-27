@@ -26,6 +26,7 @@ export class TabsPage {
       this.cookieService.get('email')
     );
     this.cookieService.deleteAll();
+    this.cookieService.deleteAll('/', 'localhost');
     this.route.navigate(['/auth']);
   }
 }

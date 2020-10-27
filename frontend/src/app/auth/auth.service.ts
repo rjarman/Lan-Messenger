@@ -28,10 +28,10 @@ export class AuthService {
         const data = JSON.parse(response.body.data);
         if (data.status === 'ok') {
           this.clearData.next(true);
-          this.cookieService.deleteAll();
-          this.cookieService.set('_isUserLogin', 'true');
-          this.cookieService.set('email', data.email);
-          this.cookieService.set('name', data.name);
+          this.cookieService.deleteAll('/', 'localhost');
+          this.cookieService.set('_isUserLogin', 'true', 30000, '/', 'localhost');
+          this.cookieService.set('email', data.email, 30000, '/', 'localhost');
+          this.cookieService.set('name', data.name, 30000, '/', 'localhost');
           this.route.navigate(['/tabs']);
         }
       });
@@ -47,10 +47,10 @@ export class AuthService {
         const data = JSON.parse(response.body.data);
         if (data.status === 'ok') {
           this.clearData.next(true);
-          this.cookieService.deleteAll();
-          this.cookieService.set('_isUserLogin', 'true');
-          this.cookieService.set('email', data.email);
-          this.cookieService.set('name', data.name);
+          this.cookieService.deleteAll('/', 'localhost');
+          this.cookieService.set('_isUserLogin', 'true', 30000, '/', 'localhost');
+          this.cookieService.set('email', data.email, 30000, '/', 'localhost');
+          this.cookieService.set('name', data.name, 30000, '/', 'localhost');
           this.route.navigate(['/tabs']);
         }
       });
