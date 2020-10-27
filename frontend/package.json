@@ -1,8 +1,17 @@
 {
   "name": "lan-messenger",
-  "version": "0.0.1",
-  "author": "Ionic Framework",
-  "homepage": "https://ionicframework.com/",
+  "version": "1.0.0",
+  "author": "Rafsun Jany Arman",
+  "description": "This application is targeting mobile users intends to help the user messaging on localhost or another given host. A user can find other users and send or receive messages from this application.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/rjarman/lan-messenger.git"
+  },
+  "bugs": {
+    "url": "https://github.com/rjarman/lan-messenger/issues"
+  },
+  "homepage": "https://github.com/rjarman/lan-messenger#readme",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -54,6 +63,5 @@
     "ts-node": "~7.0.0",
     "tslint": "~5.15.0",
     "typescript": "~3.4.3"
-  },
-  "description": "An Ionic project"
+  }
 }
