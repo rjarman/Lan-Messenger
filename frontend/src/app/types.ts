@@ -17,12 +17,6 @@ export interface Message {
   time?: number;
 }
 
-export interface Profile {
-  email: string;
-  name: string;
-  messages: Message[];
-}
-
 export interface UserList {
   email: string;
   name: string;

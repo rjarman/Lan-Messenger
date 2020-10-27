@@ -21,7 +21,6 @@ export class ChatPage implements AfterViewChecked, AfterViewInit, OnInit {
   chatEmail: string;
   chatUserName: string;
   sentMessage: string;
-  isTyping: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -29,7 +28,6 @@ export class ChatPage implements AfterViewChecked, AfterViewInit, OnInit {
     private socketService: SocketService,
     private serverService: ServerService
   ) {
-    this.isTyping = false;
     this.scrollStatus = true;
   }
   ngOnInit() {
@@ -96,7 +94,6 @@ export class ChatPage implements AfterViewChecked, AfterViewInit, OnInit {
           <h6>${replyData.message.message}</h6>
           <p>${replyData.message.name} at ${replyData.message.date}</p>
         </div>`;
-      this.isTyping = false;
       document.getElementById('scrollToLast').scrollIntoView();
       this.scrollStatus = null;
     } catch (e) {}
@@ -122,7 +119,6 @@ export class ChatPage implements AfterViewChecked, AfterViewInit, OnInit {
         flag = true;
       }
       if (flag) {
-        this.isTyping = true;
         this.socketService.message({
           type: 'message',
           data: {

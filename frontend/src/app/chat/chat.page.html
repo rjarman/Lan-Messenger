@@ -5,7 +5,7 @@
     </ion-button>
     <ion-item>
       <ion-avatar>
-        <img  src="../../../assets/profile/user.svg" alt="profile_avatar">
+        <img src="../../../assets/profile/user.svg" alt="profile_avatar" />
       </ion-avatar>
       <ion-label>
         <h2>{{chatUserName}}</h2>
@@ -13,38 +13,8 @@
     </ion-item>
   </ion-toolbar>
 </ion-header>
-<!-- 
 <ion-content class="bg">
-
-  <div class="chat-container">
-    <div *ngFor="let message of messages" class="chat-bubble" [(ngClass)]="message.messageType">
-      <h6>{{ message.message }}</h6>
-      <p>{{message.name}} at {{ message.time }}</p>
-    </div>
-  </div>
-
-  <div class="chat-controls">
-    <ion-row class="bg-white">
-      <ion-col size="11" class="ion-no-padding">
-        <ion-list lines="none" class="ion-no-padding">
-          <ion-item>
-            <ion-input placeholder="Type your message" type="text"></ion-input>
-          </ion-item>
-        </ion-list>
-      </ion-col>
-      <ion-col size="1" class="ion-no-padding">
-        <p class="ion-text-right icon-controls">
-          <ion-icon mode="ios" name="send" class="text-primary"></ion-icon>
-        </p>
-      </ion-col>
-    </ion-row>
-  </div>
-
-</ion-content> -->
-
- <ion-content class="bg">
   <ion-row>
-    <!-- <ion-col style="overflow: scroll;height: 100%;" (scroll)="abc($event)"> -->
     <ion-col style="overflow: scroll; height: 100%">
       <div class="chat-container">
         <div id="messageData"></div>
@@ -82,6 +52,5 @@
       </div>
     </ion-col>
   </ion-row>
-
   <div id="scrollToLast"></div>
 </ion-content>
