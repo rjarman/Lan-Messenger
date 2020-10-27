@@ -50,7 +50,7 @@ const route = {
   },
 };
 
-app.post('/data', (req, res, next) => {
+app.post('/', (req, res, next) => {
   res.status(route[req.body.reqType].code).json({
     data: route[req.body.reqType].method(req.body.data),
   });

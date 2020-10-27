@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  URL: 'http://localhost:3000/data',
+  URL: 'http://localhost:3000/',
   SOCKET: 'ws://127.0.0.1:3000/',
 };
 
