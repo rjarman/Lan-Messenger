@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
-import { ActiveUser, Message, ServerData } from './shared/types';
+import { ActiveUser, Message, ServerData } from './types';
 import { environment } from 'src/environments/environment';
 
 @Injectable({

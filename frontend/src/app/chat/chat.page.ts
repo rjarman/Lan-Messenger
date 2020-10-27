@@ -4,7 +4,7 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { Message, ServerData } from '../shared/types';
+import { Message, ServerData } from '../types';
 import { ActivatedRoute } from '@angular/router';
 import { SocketService } from '../socket.service';
 import { ServerService } from '../server.service';

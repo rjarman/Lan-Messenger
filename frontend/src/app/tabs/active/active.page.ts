@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActiveUser } from 'src/app/shared/types';
+import { ActiveUser } from 'src/app/types';
 import { SocketService } from 'src/app/socket.service';
 import { CookieService } from 'ngx-cookie-service';
 
