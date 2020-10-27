@@ -12,11 +12,11 @@
     "url": "https://github.com/rjarman/lan-messenger/issues"
   },
   "homepage": "https://github.com/rjarman/lan-messenger#readme",
-  "main": "server.js",
+  "main": "src/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev:server": "nodemon server.js",
-    "server": "node server.js"
+    "dev:server": "nodemon src/server.js",
+    "server": "node src/server.js"
   },
   "dependencies": {
     "body-parser": "^1.19.0",

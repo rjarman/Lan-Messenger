@@ -1,5 +1,5 @@
 const http = require('http');
-const app = require('./src/app');
+const app = require('./libs/app');
 const port = process.env.port || 3000;
 const SocketServer = require('ws').Server;
 
@@ -9,15 +9,15 @@ const io = new SocketServer({ server: server });
 
 const eventList = {
   connected_person: (data) => {
-    require('./src/online').addOnlineUser(data);
+    require('./libs/online').addOnlineUser(data);
     console.log(`${data.email} is connected!`);
   },
   disconnected_person: (data) => {
-    require('./src/online').removeOnlineUser(data);
+    require('./libs/online').removeOnlineUser(data);
     console.log(`${data.email} is disconnected!`);
   },
   message: (data) => {
-    return require('./src/localStorage').addMessage(data);
+    return require('./libs/localStorage').addMessage(data);
   },
 };
 
@@ -46,7 +46,7 @@ io.on('connection', (socket) => {
       setInterval(() => {
         socket.send(
           JSON.stringify({
-            online: require('./src/online').online(),
+            online: require('./libs/online').online(),
           })
         );
       }, 1000);
