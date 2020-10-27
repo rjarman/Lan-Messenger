@@ -11,6 +11,7 @@ export class AuthGuard implements CanLoad {
   canLoad(): boolean | Observable<boolean> | Promise<boolean> {
     if (!this.authService.isUserLogin()) {
       this.route.navigateByUrl('/auth');
+      return;
     }
     return this.authService.isUserLogin();
   }

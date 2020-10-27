@@ -48,7 +48,7 @@ export class AuthPage {
 
   register() {
     const regData = {
-      userName: this.registerForm.value.userName,
+      name: this.registerForm.value.userName,
       email: this.registerForm.value.email,
       password: this.registerForm.value.password,
     };

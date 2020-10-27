@@ -9,7 +9,7 @@ import { Subject } from 'rxjs';
   providedIn: 'root',
 })
 export class AuthService {
-  clearData = new Subject<Boolean>();
+  clearData = new Subject<boolean>();
 
   constructor(
     private httpClient: HttpClient,
@@ -17,36 +17,40 @@ export class AuthService {
     private route: Router
   ) {}
 
-  register(regData: { userName: string; email: string; password: string }) {
+  register(regData: { name: string; email: string; password: string }) {
     this.httpClient
-      .post<{ status }>(
+      .post<{ data }>(
         environment.URL,
         { reqType: 'register', data: regData },
         { observe: 'response' }
       )
       .subscribe((response) => {
-        if (response.body.status === 'ok') {
+        const data = JSON.parse(response.body.data);
+        if (data.status === 'ok') {
           this.clearData.next(true);
           this.cookieService.deleteAll();
           this.cookieService.set('_isUserLogin', 'true');
-          this.cookieService.set('email', regData.email);
+          this.cookieService.set('email', data.email);
+          this.cookieService.set('name', data.name);
           this.route.navigate(['/tabs']);
         }
       });
   }
   login(logData: { email: string; password: string }) {
     this.httpClient
-      .post<{ status }>(
+      .post<{ data }>(
         environment.URL,
         { reqType: 'login', data: logData },
         { observe: 'response' }
       )
       .subscribe((response) => {
-        if (response.body.status === 'ok') {
+        const data = JSON.parse(response.body.data);
+        if (data.status === 'ok') {
           this.clearData.next(true);
           this.cookieService.deleteAll();
           this.cookieService.set('_isUserLogin', 'true');
-          this.cookieService.set('email', logData.email);
+          this.cookieService.set('email', data.email);
+          this.cookieService.set('name', data.name);
           this.route.navigate(['/tabs']);
         }
       });
