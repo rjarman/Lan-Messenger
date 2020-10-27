@@ -10,6 +10,7 @@ This application is targeting mobile users intends to help the user messaging on
 #### Technical Challenges
 
 - Build a system using **WebSocket** that can communicate between two specific clients as any chat app does.
+- Connect **WebSocket** with **express**.
 - A client can send a message to another client whether the client is online or not.
 - Active Sockets:
   - Show active sockets to communicate using **WebSocket**.
@@ -20,6 +21,7 @@ This application is targeting mobile users intends to help the user messaging on
 
 - This app is built to demonstrate socket communication so that <u>***no database is used***</u>, <u>server stored data in local storage as a string</u>. But stored data can be parsed as **JSON** and used as **NoSQL** database schema.
 - For the first time messaging, other users have to be online and then from online list they can send a message after that it will be listed on the message list page.
+- This application is not built for design purpose.
 
 #### Installation and Run
 
