@@ -1,7 +1,6 @@
 <ion-content id="abc" fullscreen>
   <ion-item
     *ngFor="let user of onlineUser"
-    id="{{user.email}}"
     [routerLink]="['/chat/', user.email, user.name]"
   >
     <ion-avatar>
