@@ -5,38 +5,41 @@ import { AuthGuard } from './auth/AuthGuard';
 const routes: Routes = [
   {
     path: '',
-    redirectTo: '/auth',
-    pathMatch: 'full'
+    redirectTo: '/tabs',
+    pathMatch: 'full',
+    canLoad: [AuthGuard],
   },
   {
     path: 'auth',
-    loadChildren: () => import('./auth/auth.module').then( m => m.AuthPageModule),
+    loadChildren: () =>
+      import('./auth/auth.module').then((m) => m.AuthPageModule),
   },
   {
     path: 'tabs',
-    loadChildren: () => import('./tabs/tabs.module').then( m => m.TabsPageModule),
-    canLoad: [AuthGuard]
+    loadChildren: () =>
+      import('./tabs/tabs.module').then((m) => m.TabsPageModule),
+    canLoad: [AuthGuard],
   },
   {
     path: 'chat',
     children: [
       {
         path: '',
-        loadChildren: './chat/chat.module#ChatPageModule'
+        loadChildren: './chat/chat.module#ChatPageModule',
       },
       {
-        path: ':userId',
-        loadChildren: './chat/chat.module#ChatPageModule'
-      }
+        path: ':email/:name',
+        loadChildren: './chat/chat.module#ChatPageModule',
+      },
     ],
-    canLoad: [AuthGuard]
-  }
+    canLoad: [AuthGuard],
+  },
 ];
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules })
+    RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
   ],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
